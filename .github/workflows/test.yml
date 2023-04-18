@@ -1,0 +1,27 @@
+name: run tests
+
+on: [push]
+
+jobs:
+  rebuild:
+    strategy:
+      matrix:
+        node: [16, 18]
+
+    name: run tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: install dependencies
+        run: npm install
+
+      - name: code lint
+        run: npm run lint
+      
+      - name: functional tests
+        run: npm run test

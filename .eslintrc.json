@@ -1,0 +1,16 @@
+{
+  "extends": ["airbnb-base", "prettier"],
+  "rules": {
+    "import/extensions": ["error", "ignorePackages"]
+  },
+  "overrides": [{
+    "files": ["*.test.js"],
+    "rules": {
+      "import/no-extraneous-dependencies": "off"
+    }
+  }],
+  "env": {
+    "node": true,
+    "es6": true
+  }
+}
