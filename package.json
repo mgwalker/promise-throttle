@@ -1,6 +1,7 @@
 {
   "name": "@mgwalker/promise-throttle",
   "version": "1.0.1",
+  "repository": "github:mgwalker/promise-throttle",
   "description": "Perform an asynchronous callback on an array of items, limited to a certain number of simultaneous instances, until the entire list has been iterated.",
   "main": "index.js",
   "engines": {
