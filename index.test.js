@@ -1,7 +1,10 @@
+import sinon from "sinon";
 import tap from "tap";
 import throttle from "./index.js";
 
 tap.test("promise-throttle lib", async (test) => {
+  const clock = sinon.useFakeTimers();
+
   // These are the items passed into the throttle. The values are how long each
   // item should wait before finishing. By arranging these values correctly, we
   // can test the various flows of the throttler. Setting the intervals at 100ms
@@ -53,7 +56,13 @@ tap.test("promise-throttle lib", async (test) => {
     });
 
   // Run the throttle queue
-  const results = await throttle(items, process, 5);
+  const throttlePromise = throttle(items, process, 5);
+
+  for (let i = 0; i < items.length; i += 1) {
+    clock.nextAsync();
+  }
+
+  const results = await throttlePromise;
 
   // Ensure that items begin processing in insertion order and that they finish
   // in the order we expect (based on the table above).
