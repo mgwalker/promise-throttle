@@ -1,3 +1,10 @@
+/**
+ * @param {any[]} items The list of items to be iterated over
+ * @param {(arg0: any) => Promise<any>} callback The function to be called with
+ *                        each item from the items argument.
+ * @param {number} throttle (optional) The maximum number of awaiting callbacks to allow at
+ *                          a time. Default: 5
+ */
 export default async (items, callback, throttle = 5) => {
   const copy = [...items];
 
